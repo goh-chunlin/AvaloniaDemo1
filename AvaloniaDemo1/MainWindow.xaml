@@ -1,0 +1,69 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:AvaloniaDemo1;assembly=AvaloniaDemo1"
+        Title="Hello!" Width="1250" Height="650">
+  <Grid Width="1200" Height="600">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="200"/>
+      <ColumnDefinition Width="1*"/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="60"/>
+      <RowDefinition Height="500"/>
+      <RowDefinition/>
+    </Grid.RowDefinitions>
+    
+    <Border Grid.Column="0" Grid.Row="0">
+      <Image Source="images/logo.png" Width="140" Height="40" />
+    </Border>
+    <Border Grid.Column="1" Grid.Row="0">
+      <StackPanel Orientation="Horizontal">
+        <StackPanel Margin="4">
+          <TextBlock FontSize="16" Text="User Name:"/>
+          <TextBox Name="txtUserName" Width="200" Focusable="True" Text="{Binding UserName}"></TextBox>
+        </StackPanel>
+        <StackPanel Margin="4">
+          <TextBlock FontSize="16" Text="Board:"/>
+          <TextBox Name="txtBoard" Width="200" Focusable="True" Text="{Binding BoardName}"></TextBox>
+        </StackPanel>
+        <StackPanel Margin="4">
+          <TextBlock FontSize="16" Text=" "/>
+          <Button Content="Submit" FontSize="12" Name="btnSubmit" Click="OnButtonClicked"/>
+        </StackPanel>
+      </StackPanel>
+    </Border>
+    
+    <Border Grid.Column="0" Grid.Row="1">
+
+      <StackPanel>
+        <StackPanel Width="200" Height="500">
+          <TextBlock FontSize="16" Text="Items:"/>
+          <ListBox Height="400" Items="{Binding Items}" SelectionMode="Single" SelectedItem="{Binding SelectedItem}"/>
+        </StackPanel>
+        <StackPanel.DataTemplates>
+          <DataTemplate>
+            <StackPanel Orientation="Vertical" Width="200">
+              <Image Source="{Binding Image}" Height="150" Width="200" Stretch="Uniform"/>
+              <TextBlock Text="{Binding Title}"/>
+            </StackPanel>
+          </DataTemplate>
+        </StackPanel.DataTemplates>
+      </StackPanel>
+
+    </Border>
+    <Border Grid.Column="1" Grid.Row="1" Background="#89afed">
+      <StackPanel>
+        
+        <Image Source="{Binding SelectedItem.Image}" Height="450" Width="600" Stretch="Uniform"/>
+        
+        <TextBlock Text="{Binding SelectedItem.Title}"/>
+        <TextBlock Text="{Binding SelectedItem.PublishedDate}"/>
+
+      </StackPanel>
+    </Border>
+
+    <Border Grid.Column="1" Grid.Row="2">
+      <TextBlock Text="{Binding Message}" Foreground="#f93a00"/>
+    </Border>
+  </Grid>
+</Window>
